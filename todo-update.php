@@ -97,11 +97,14 @@ if (array_key_exists('tid', $_GET) && $_GET['tid'] !== '') {
                     
 
                     // Checkboxen mit Kategorien ausgeben
-                    $sqlCat = "SELECT c.categories_id AS cid, c.name, tc.todos_id AS tid FROM categories c LEFT JOIN todos_categories tc ON tc.categories_id = c.categories_id LEFT JOIN todos AS t ON t.todos_id = tc.todos_id ORDER BY name";
+                    $sqlCat = "SELECT c.categories_id AS cid, c.name, tc.todos_id AS tid 
+                    FROM categories c LEFT JOIN todos_categories tc ON tc.categories_id = c.categories_id 
+                    LEFT JOIN todos AS t ON t.todos_id = tc.todos_id ORDER BY name";
                     
                     // Result Set aus $sql ermitteln
                     $resCat = mysqli_query($mysql, $sqlCat);
                     
+
                     if ( $resCat !== false && mysqli_num_rows($resCat) > 0 ) {
                         while( $row = mysqli_fetch_assoc($resCat) ) {
                             $checked = '';
